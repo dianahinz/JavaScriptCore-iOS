@@ -158,8 +158,7 @@ UnlinkedFunctionExecutable* CodeCache::getFunctionExecutableFromGlobalCode(VM& v
     RELEASE_ASSERT(funcExpr->isFuncExprNode());
     FunctionBodyNode* body = static_cast<FuncExprNode*>(funcExpr)->body();
     body->setEndPosition(positionBeforeLastNewline);
-    ASSERT(body);
-    ASSERT(body->ident().isNull());
+    ASSERT(body && body->ident().isNull());
 
     UnlinkedFunctionExecutable* functionExecutable = UnlinkedFunctionExecutable::create(&vm, source, body, true);
     functionExecutable->m_nameValue.set(vm, functionExecutable, jsString(&vm, name.string()));
